@@ -8,6 +8,7 @@ public class SelectVisual : MonoBehaviour
     [SerializeField] private XRGrabInteractable grabObject;
     [SerializeField] private GameObject selectVisual;
     [SerializeField] private GameObject activateVisual;
+    [SerializeField] private Transform fixedNozzle;
     private void Start()
     {
         grabObject.hoverEntered.AddListener(OnHoverEnter);
@@ -20,7 +21,8 @@ public class SelectVisual : MonoBehaviour
 
     private void OnDeactivate(SelectExitEventArgs arg0)
     {
-        Deactivate();
+        if(arg0.isCanceled)
+            Deactivate();
     }
 
     private void OnDeactivate(DeactivateEventArgs arg0)
@@ -63,11 +65,11 @@ public class SelectVisual : MonoBehaviour
 
     private void Activate()
     {
-        activateVisual.SetActive(true);
+        activateVisual.transform.position -= transform.up * 0.01f;
     }
 
     private void Deactivate()
     {
-        activateVisual.SetActive(false);
+        activateVisual.transform.position = fixedNozzle.position;
     }
 }
