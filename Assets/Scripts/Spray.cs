@@ -15,6 +15,8 @@ public class Spray : MonoBehaviour
     [SerializeField] private ColorSO colorSo;
     [SerializeField] private Material defaultMaterial;
     [SerializeField] private AudioSource spraySound;
+    [SerializeField] private AudioSource shakingSound;
+    
     
     [Header("___Spray Config___")]
     [SerializeField] private float spreadAngle = 10f;
