@@ -909,9 +909,11 @@ MonoBehaviour:
   defaultMaterial: {fileID: 2100000, guid: cf8285cc6a2888d4fa9a47bd1bb1a594, type: 2}
   spraySound: {fileID: 4418343870954671767}
   shakingSound: {fileID: 5138926169847020864}
-  spreadAngle: 10
+  spreadAngle: 8
   sprayForce: 10
   canVelocity: 1.5
+  sprayBuffer: 0.3
+  sprayDensity: 3
 --- !u!1 &5426350635874912435
 GameObject:
   m_ObjectHideFlags: 0

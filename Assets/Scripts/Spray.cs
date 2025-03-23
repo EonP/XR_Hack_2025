@@ -23,6 +23,7 @@ public class Spray : MonoBehaviour
     [SerializeField] private float sprayForce = 10f;
     [SerializeField] private float canVelocity = 10f;
     [SerializeField] private float sprayBuffer = 0.3f;
+    [SerializeField] private int sprayDensity = 5;
     
     private SprayState _state = SprayState.Idle;
     Material newMaterial;
@@ -61,7 +62,8 @@ public class Spray : MonoBehaviour
     {
         if (_state == SprayState.Spraying)
         {
-            SpawnDroplet();
+            for(int i = 0; i < sprayDensity; i++)
+                SpawnDroplet();
             timer.ForceEnd();
         }
         else
