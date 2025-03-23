@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion;
 using Random = UnityEngine.Random;
 
 public class Spray : MonoBehaviour
@@ -17,13 +18,21 @@ public class Spray : MonoBehaviour
     [SerializeField] private AudioSource spraySound;
     [SerializeField] private AudioSource shakingSound;
     
-    
     [Header("___Spray Config___")]
     [SerializeField] private float spreadAngle = 10f;
     [SerializeField] private float sprayForce = 10f;
+    [SerializeField] private float canVelocity = 10f;
+    [SerializeField] private float sprayBuffer = 0.3f;
     
     private SprayState _state = SprayState.Idle;
     Material newMaterial;
+    Vector3 lastPosition;
+    private Timer timer;
+
+    public void Awake()
+    {
+        timer = new Timer(sprayBuffer);
+    }
 
     public void Start()
     {
@@ -37,7 +46,15 @@ public class Spray : MonoBehaviour
         visual.GetComponent<MeshRenderer>().material = newMaterial;
         nozzle.GetComponent<MeshRenderer>().material = newMaterial;
         
-        
+        lastPosition = transform.position;
+
+        timer.OnTimerEnd += StopSFX;
+    }
+
+    private void StopSFX()
+    {
+        if (shakingSound.isPlaying) 
+            shakingSound.Stop();
     }
     
     private void Update()
@@ -45,6 +62,26 @@ public class Spray : MonoBehaviour
         if (_state == SprayState.Spraying)
         {
             SpawnDroplet();
+            timer.ForceEnd();
+        }
+        else
+        {
+            float delta = (transform.position - lastPosition).magnitude;
+            Vector3 velocity = (transform.position - lastPosition) / Time.deltaTime;
+            float vel =  velocity.magnitude;
+            if (vel > 0)
+            {
+                Debug.Log(vel);
+            }
+            if (!shakingSound.isPlaying && vel > canVelocity)
+            {
+                if (delta < 1)
+                    shakingSound.Play();
+                timer.Restart(sprayBuffer);
+            }
+            
+            lastPosition = transform.position;
+            timer.Tick(Time.deltaTime);
         }
     }
 
@@ -72,6 +109,10 @@ public class Spray : MonoBehaviour
     private void OnDeactivate(SelectExitEventArgs arg0)
     {
         _state = SprayState.Idle;
+        if (spraySound != null && spraySound.isPlaying)
+        {
+            spraySound.Stop();
+        }
     }
 
     private void OnDeactivate(DeactivateEventArgs arg0)

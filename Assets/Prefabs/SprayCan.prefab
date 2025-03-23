@@ -42,8 +42,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 4398988084219031648, guid: dceddd8b239cb5443a3f352aa7c748b0, type: 2}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 41772db45f3a3bb48b5eede2e636629a, type: 3}
+  m_Resource: {fileID: 8300000, guid: 41772db45f3a3bb48b5eede2e636629a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -911,6 +911,7 @@ MonoBehaviour:
   shakingSound: {fileID: 5138926169847020864}
   spreadAngle: 10
   sprayForce: 10
+  canVelocity: 1.5
 --- !u!1 &5426350635874912435
 GameObject:
   m_ObjectHideFlags: 0

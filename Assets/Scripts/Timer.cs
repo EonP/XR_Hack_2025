@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Util
-{
+
     public class Timer
     {
         public float RemainingSeconds { get; private set; }
@@ -123,4 +122,4 @@ namespace Util
         }
         
     }
-}
+
