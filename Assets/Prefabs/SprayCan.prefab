@@ -643,6 +643,10 @@ MonoBehaviour:
   sprayPoint: {fileID: 3980105750263356949}
   sprayParticlePrefab: {fileID: 7033960131839480294, guid: 6b28c4023e9fd6949912d1d2fd3bcc22, type: 3}
   grabObject: {fileID: 6080733263638953000}
+  visual: {fileID: 5819286417586260963}
+  nozzle: {fileID: 6859294397151734194}
+  colorSo: {fileID: 11400000, guid: 2117ce6d010a96444942992fe5ee8335, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: cf8285cc6a2888d4fa9a47bd1bb1a594, type: 2}
   spreadAngle: 10
   sprayForce: 10
 --- !u!1 &5426350635874912435
@@ -743,7 +747,7 @@ GameObject:
   - component: {fileID: 6944401176492917992}
   - component: {fileID: 6897089652080370006}
   m_Layer: 0
-  m_Name: SprayCan
+  m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

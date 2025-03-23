@@ -10,18 +10,31 @@ public class Spray : MonoBehaviour
     [SerializeField] private Transform sprayPoint;
     [SerializeField] private GameObject sprayParticlePrefab;
     [SerializeField] private XRGrabInteractable grabObject;
+    [SerializeField] private GameObject visual;
+    [SerializeField] private GameObject nozzle;
+    [SerializeField] private ColorSO colorSo;
+    [SerializeField] private Material defaultMaterial;
     
     [Header("___Spray Config___")]
     [SerializeField] private float spreadAngle = 10f;
     [SerializeField] private float sprayForce = 10f;
     
     private SprayState _state = SprayState.Idle;
+    Material newMaterial;
 
     public void Start()
     {
         grabObject.activated.AddListener(OnActivate);
         grabObject.deactivated.AddListener(OnDeactivate);
         grabObject.selectExited.AddListener(OnDeactivate);
+        
+        newMaterial = new Material(defaultMaterial);
+        newMaterial.color = colorSo.color;
+        
+        visual.GetComponent<MeshRenderer>().material = newMaterial;
+        nozzle.GetComponent<MeshRenderer>().material = newMaterial;
+        
+        
     }
     
     private void Update()
@@ -48,7 +61,9 @@ public class Spray : MonoBehaviour
 
         // Instantiate the droplet
         GameObject droplet = ObjectPoolManager.SpawnObject(sprayParticlePrefab, sprayPoint.position, Quaternion.LookRotation(randomDirection));
-        
+        Material dropletMaterial = new Material(newMaterial);
+        droplet.GetComponent<MeshRenderer>().material = dropletMaterial;
+        droplet.GetComponent<SprayParticle>().color = colorSo.color;
         // Optionally, if dropletPrefab has a Rigidbody, apply force so it flies outward
         Rigidbody rb = droplet.GetComponent<Rigidbody>();
         if (rb != null)
