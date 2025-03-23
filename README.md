@@ -1,5 +1,5 @@
-# XR_Hack_2025 - The Eco Canvas 
+# McGillXR Hack 2025 - 2nd Place!
 
-> Placed **2nd** at **XR_Hack_2025**  
-> Built with Unity + OpenXR
-> [Watch Full Demo Video](https://www.youtube.com/watch?v=GhEYYJhl0PQ)
+[Watch Full Demo Video](https://www.youtube.com/watch?v=GhEYYJhl0PQ)
+
+![ ](Screenshot_2025-03-23_145141.png)
