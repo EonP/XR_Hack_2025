@@ -391,6 +391,7 @@ GameObject:
   - component: {fileID: 6080733263638953000}
   - component: {fileID: 2693695185359395802}
   - component: {fileID: 2088567449055285772}
+  - component: {fileID: 6315150341644663810}
   m_Layer: 0
   m_Name: SprayCan
   m_TagString: Untagged
@@ -625,8 +626,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grabObject: {fileID: 6080733263638953000}
   selectVisual: {fileID: 1387565727584093225}
-  activateVisual: {fileID: 5426350635874912435}
+  activateVisual: {fileID: 2433090827850480638}
   fixedNozzle: {fileID: 1529238765419759986}
+--- !u!114 &6315150341644663810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3646824354376944104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4226fa4c7feb16048b3a6eadcb528c7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprayPoint: {fileID: 3980105750263356949}
+  sprayParticlePrefab: {fileID: 7033960131839480294, guid: 6b28c4023e9fd6949912d1d2fd3bcc22, type: 3}
+  grabObject: {fileID: 6080733263638953000}
+  spreadAngle: 10
+  sprayForce: 10
 --- !u!1 &5426350635874912435
 GameObject:
   m_ObjectHideFlags: 0
