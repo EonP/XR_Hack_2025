@@ -48,17 +48,11 @@ public class Spray : MonoBehaviour
     private void SpawnDroplet()
     {
 
-        // Calculate a random direction within a cone (± spreadAngle degrees in pitch & yaw)
-        // Start with the forward direction
-        Vector3 randomDirection = transform.forward;
-        
-        // Random rotation within the spreadAngle around X and Y
-        float randomPitch = Random.Range(-spreadAngle, spreadAngle);
-        float randomYaw   = Random.Range(-spreadAngle, spreadAngle);
+        float xRot = Random.Range(-spreadAngle, spreadAngle);
+        float yRot = Random.Range(-spreadAngle, spreadAngle);
+        float zRot = Random.Range(-spreadAngle, spreadAngle);
 
-        // Apply the random rotation to get a final spread direction
-        randomDirection = Quaternion.Euler(randomPitch, randomYaw, 0f) * randomDirection;
-
+        Vector3 randomDirection = Quaternion.Euler(xRot, yRot, zRot) * transform.forward;;
         // Instantiate the droplet
         GameObject droplet = ObjectPoolManager.SpawnObject(sprayParticlePrefab, sprayPoint.position, Quaternion.LookRotation(randomDirection));
         Material dropletMaterial = new Material(newMaterial);
