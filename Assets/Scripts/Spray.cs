@@ -14,6 +14,7 @@ public class Spray : MonoBehaviour
     [SerializeField] private GameObject nozzle;
     [SerializeField] private ColorSO colorSo;
     [SerializeField] private Material defaultMaterial;
+    [SerializeField] private AudioSource spraySound;
     
     [Header("___Spray Config___")]
     [SerializeField] private float spreadAngle = 10f;
@@ -80,11 +81,19 @@ public class Spray : MonoBehaviour
     private void OnDeactivate(DeactivateEventArgs arg0)
     {
         _state = SprayState.Idle;
+        if (spraySound != null && spraySound.isPlaying)
+        {
+            spraySound.Stop();
+        }
     }
 
     private void OnActivate(ActivateEventArgs arg0)
     {
         _state = SprayState.Spraying;
+        if (spraySound != null && !spraySound.isPlaying)
+        {
+            spraySound.Play();
+        }
     }
 
 
